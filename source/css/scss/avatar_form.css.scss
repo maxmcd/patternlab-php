@@ -1,0 +1,128 @@
+#avatar-preview-container {
+  width:704px;
+  height:352px;
+  background:#f6f6f6;
+  margin:0 auto;
+}
+
+#upload-area {
+  width:704px;
+  height:30px;
+  margin:20px auto;
+}
+
+#avatar-previews-wrapper {
+  width:352px;
+  height:352px;
+  float:right;
+}
+
+#avatar-preview {
+  background:#00a14b url(/assets/beta2/emtpy_profile_180x180.png);
+  width:180px;
+  height:180px;
+  margin:80px auto;
+  overflow: hidden;
+  border-radius:90px;
+  @include box-shadow(inset 1px 1px 2px #231f20);
+
+  &.avatar-facility {
+    border-radius:0;
+    @include box-shadow(none);
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+
+  table {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border-collapse:collapse;
+    border-spacing:0;
+
+    td {
+      vertical-align: middle;
+
+      #avatar-wrapper {
+        overflow: hidden;
+        display:inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+#avatar-label {
+  text-align:center;
+  padding-top:130px;
+  color:#003317;
+  font-size:13px
+}
+
+#avatar-editor {
+  width:352px;
+  height:352px;
+  background:#313131;
+  display: table-cell;
+  vertical-align: middle;
+  text-align:center;
+  overflow:hidden;
+}
+
+#avatar-edit {
+  max-height: none;
+  max-width: none;
+}
+
+.jcrop-holder {
+  margin:0 auto;
+  overflow: hidden;
+
+  img {
+    max-height: none;
+    max-width: none;
+  }
+}
+
+.jcrop-holder img, #preview {
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
+}
+
+#avatar-right-buttons {
+  width:352px;
+  height:40px;
+  float:right;
+  text-align:center;
+}
+
+#avatar-left-buttons {
+  width:352px;
+  height:40px;
+}
+
+#upload-area .drag-hint {
+  display:none;
+}
+
+.qq-upload-dragging {
+  #upload-area {
+    background: #00A14B;
+    padding:0.5em;
+    border-radius:5px;
+    @include box-shadow(none);
+
+    .drag-hint {
+      color: #fff;
+      font-size:20px;
+      line-height:30px;
+      text-align: center;
+      display: block;
+    }
+  }
+  #avatar-left-buttons, #avatar-right-buttons {
+    display: none;
+  }
+}

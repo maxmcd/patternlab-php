@@ -1,0 +1,167 @@
+.btn-group {
+  &.btn-group-justified {
+    .btn-small-left {
+      width: 0.05% !important;
+    }
+  }
+}
+
+.btn-facebook {
+  color: white;
+  background-color: rgb(36, 64, 144);
+  border-color: rgb(36, 64, 144);
+
+  &:focus, &:active, &:hover {
+    background-color: rgb(26, 54, 134);
+    border-color: rgb(26, 54, 134);
+  }
+}
+
+.btn-gplus {
+  color: white;
+  background-color: rgb(207, 53, 30);
+  border-color: rgb(207, 53, 30);
+
+  &:focus, &:active, &:hover {
+    background-color: rgb(197, 43, 20);
+    border-color: rgb(197, 43, 20);
+  }
+}
+
+.btn-linkedin {
+  color: white;
+  background-color: rgb(22, 99, 172);
+  border-color: rgb(22, 99, 172);
+
+  &:focus, &:active, &:hover {
+    background-color: rgb(12, 89, 162);
+    border-color: rgb(12, 89, 162);
+  }
+}
+
+.btn-icon {
+  @include box-shadow(none);
+  display:inline-block;
+  border: none;
+  padding: 0;
+  vertical-align: middle;
+  color: $gray-light;
+
+  &:hover, &:active {
+    text-decoration: none;
+    color: $text-color;
+  }
+
+  &.eye {
+    height: 25px;
+    width: 25px;
+    background: transparent image-url('beta2/eye_icon.png') no-repeat;
+
+    &:hover, &:focus {
+      background: transparent image-url('beta2/eye_icon_hover.png') no-repeat;      
+    }
+  }
+
+  &.reply {
+    height: 25px;
+    width: 25px;
+    background: transparent image-url('beta2/receive_icon.png') no-repeat;
+
+    &:hover, &:focus {
+      background: transparent image-url('beta2/receive_icon_hover.png') no-repeat;      
+    }
+  }
+
+  &.message {
+    height: 25px;
+    width: 25px;
+    background: transparent image-url('beta2/message_icon.png') no-repeat;
+
+    &:hover, &:focus {
+      background: transparent image-url('beta2/message_icon_hover.png') no-repeat;      
+    }
+  }
+
+  &.block-message {
+    height: 25px;
+    width: 25px;
+    background: transparent image-url('beta2/block_message_icon.png') no-repeat;
+
+    &:hover, &:focus {
+      background: transparent image-url('beta2/block_message_icon_hover.png') no-repeat;      
+    }
+  }
+
+  &.edit {
+    height: 25px;
+    width: 25px;
+    background: transparent image-url('beta2/edit_icon.png') no-repeat;
+
+    &:hover, &:focus {
+      background: transparent image-url('beta2/edit_icon_hover.png') no-repeat;      
+    }
+  }
+
+  &.forward {
+    height: 25px;
+    width: 25px;
+    background: transparent image-url('beta2/forward_icon.png') no-repeat;
+
+    &:hover, &:focus {
+      background: transparent image-url('beta2/forward_icon_hover.png') no-repeat;      
+    }
+  }
+
+  &.switch {
+    height: 25px;
+    width: 82px;
+    background: transparent image-url('beta2/open_switch_icon.png') no-repeat;
+
+    &.close-switch {
+      background: transparent image-url('beta2/close_switch_icon.png') no-repeat;
+    }
+  }
+
+  &.sort {
+    height: 25px;
+    width: 25px;
+    background: transparent image-url('beta2/sort_icon.png') no-repeat;
+    cursor: move;
+
+    &:hover, &:focus {
+      background: transparent image-url('beta2/sort_icon_hover.png') no-repeat;      
+    }
+  }
+
+  &.show-messages {
+    height: 25px;
+    width: 25px;
+    background: transparent image-url('beta2/show_messages_icon.png') no-repeat;
+
+    line-height: 22px;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+  }
+}
+
+.buttons {
+  .btn-icon {
+    margin-right: 7px;
+  }
+
+  .close {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin:0px 8px;
+  }
+}
+
+.close {
+  &:hover, &:focus {
+    color: #323232;
+    opacity: 0.8;
+  }
+}

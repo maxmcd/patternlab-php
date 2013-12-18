@@ -1,0 +1,111 @@
+.dinex-page {
+  position: relative;
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.dinex-header {
+  background: gray image-url('dinex/background.jpg') center top no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  // mobile devices not correctly processes cover background-size
+  @media screen and (max-width: $screen-tablet) {
+    background-size: auto;
+  }
+}
+
+.binding-dark {
+  background: gray image-url('dinex/binding_dark.png') repeat;
+  color: #fff;
+}
+
+.paper {
+  background: #fff;
+  border-radius: 5px;
+  padding: 55px 0px 35px 0px;
+}
+
+.shadow-text {
+  display: inline-block;
+  color: #fff;
+  max-width: 440px;
+  background: rgba(0,0,0,0.7);
+  padding: 25px 20px;
+}
+
+#sticky-wrapper {
+  height: 80px;
+}
+
+.phase-label {
+  text-align: center;
+  position: relative;
+  margin-bottom: 35px;
+
+  strong {
+    color: #fff;
+    display: inline-block;
+    width: 150px;
+    background: #cd6d19;
+    padding: 10px;
+  }
+
+  hr {
+    margin-top: -20px;
+  }
+}
+
+.phase-cafe {
+  color: #cd6d19;
+}
+
+.phase-hr {
+  border-top: 1px solid #cd6d19;
+  border-bottom: 1px solid #cd6d19;
+}
+
+#dinex-navbar {
+  background: #222222;
+  min-height: 60px;
+  width: 100%;
+  position: relative;
+
+  &.stuck {
+    z-index: 999;
+    position:fixed;
+    top: 65px;
+  }
+
+  ul {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    padding: 10px;
+
+    li {
+      display: inline-block;
+      margin-right: 15px;
+      font-weight: bold;
+      padding: 10px;
+
+      a {
+        padding: 0px;
+        color: white;
+        background-color: transparent;
+
+        &:active, &:hover {
+          color: #cd6d19;
+          text-decoration: none;
+        }
+      }
+
+      &.active {
+        a {
+          color: #cd6d19;
+        }
+      }
+    }
+  }
+}

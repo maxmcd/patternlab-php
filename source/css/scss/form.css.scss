@@ -1,0 +1,248 @@
+.ca-control {
+  margin-bottom:16px;
+
+  &.radio_buttons .controls {
+    margin-left: 5px;
+  }
+
+  .radio + .radio,
+  .checkbox + .checkbox {
+    @media screen and (min-width: $screen-tablet) {
+      margin-top: 10px;
+    }
+  }
+
+  span.radio.inline {
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+
+  input, input:focus, textarea, textarea:focus {
+    @include box-shadow(none);
+  }
+
+  &.inline-control {
+    display: inline-block;
+  }
+
+  // checkboxes
+  .checkbox3  {
+    display:inline-block !important;
+    float: none;
+    width:30%;
+  }
+
+  .checkbox {
+    padding-left:0;
+    //margin-top:5px;
+    input[type="checkbox"] {
+      display:none;
+    }
+
+    label {
+      display: block;
+      padding-left: 7px+16px+10px;
+      margin-left:0;
+      background: image-url('prettyCheckable.png') no-repeat 0 -7px;
+      height:16px;
+      line-height: 18px;
+    }
+
+    input[type='checkbox']:checked + label {
+      color:#00a14b;
+      background-position:0 -53px;
+    }
+
+    input[type='checkbox']:disabled + label {
+      color: #999;
+      cursor: default;
+      opacity: 0.5;
+    }
+  }
+
+  &.error {
+    > label {
+      color:#ff6958 !important;
+
+      abbr {
+        color:#ff6958 !important;        
+      }
+    }
+    input, input:focus {
+      @include box-shadow(none);
+    }
+    .help-inline {
+      color:#ff6958;
+    }
+  }
+}
+
+.help-inline {
+  font-size: 12px;
+  margin-left: 10px;
+  color: #8c8c8c;
+}
+
+.with-row-hint {
+  padding-bottom:16px;
+
+  .row-hint {
+    position:absolute;
+    margin-top:-14px;
+    font-size:12px;
+  }
+}
+
+.form-actions {
+  text-align: center;
+  background:#fff;
+  border-top: 6px solid #eeeeee;
+  padding: 20px;
+}
+
+// nested items
+.manage-link {
+  display: block;
+  width: 20px;
+  height: 36px;
+  margin-left:100%;
+  position: absolute;
+  top: 0px;
+  right: -20px;
+
+  &.add {
+    background: image-url('beta2/add-item-icon.png') 50% 50% no-repeat;
+  }
+
+  &.remove {
+    background: image-url('beta2/remove-item-icon.png') 50% 50% no-repeat;
+  }
+}
+
+.smanage-link {
+  display: block;
+
+  &.add {
+    padding-left:18px;
+    background: image-url('beta2/green-plus-icon.png') 0 50% no-repeat;
+  }
+
+  &.remove {
+    margin-top: -30px;
+    margin-left: 100%;
+    width: 20px;
+    height: 20px;
+    background: image-url('beta2/remove-item-icon.png') 50% 50% no-repeat;
+  }
+}
+
+abbr {
+  color: #00a14b;
+  border: none;
+}
+
+.items {
+  .item {
+    position: relative;
+  }
+
+  .item:last-child .manage-link.remove  {
+    display: none;
+  }
+}
+
+
+.birthday-select[id*="birthday_2i"] {
+  margin-right: 2%;
+}
+
+.birthday-select {
+  float:left;
+  width: 49% !important;
+}
+
+// select2
+.select2-container .select2-choice {
+  height: 38px;
+  padding: 5px 0 0 14px;
+}
+
+.select2-container .select2-choice div b {
+  margin-top: 5px;
+}
+
+.select2-container .select2-choice abbr.select2-search-choice-close {
+  top: 11px;
+}
+
+#js-ajax-loader {
+ position: absolute;
+ text-align: center;
+ top: 0px;
+ background-color: rgba(247, 247, 247, 0.8);
+
+ .spin {
+   position: relative;
+   height: 100%;
+   width: 100%;
+   background:image-url("beta2/ajax-loader.gif") no-repeat center center;
+ }
+}
+
+.select2-user {
+  .select2-result-label {
+    border-bottom: 1px solid $gray-light;
+  }
+
+  .select2-choice {
+    padding-top: 2px;
+
+    img.avatar {
+      top: 3px !important;
+    }
+  }
+
+  .select2-result-label, .select2-choice, .select2-search-choice {
+    position: relative;
+
+    img.avatar {
+      position: absolute;
+      top: 5px;
+      margin: 0;
+    }
+
+    h4, h5, h6 {
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+
+    .avatar + h5, .avatar + h5 + h6 {
+      margin-left: 40px;
+    }
+  }
+}
+
+.select2-container {
+  &.select2-user {
+    height: auto;
+
+    input[type='text'] {
+      border-bottom: none;
+    }
+  }
+}
+
+.character-counter-container {
+  position: absolute;
+  font-size: 0.9em;
+  color: #999;
+}
+
+.inline-radio {
+  .radio {
+    float: left;
+    margin-right: 30px;
+    margin-top: 10px;
+  }
+}

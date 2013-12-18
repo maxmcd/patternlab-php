@@ -1,0 +1,70 @@
+ul.pagination {
+  text-align: center;
+  @include box-shadow(none);
+
+  li > a {
+    border:none;
+    background: none;
+    color: #656565;
+    padding: 4px 8px;
+
+    &:hover, &:focus {
+      color: #333;
+      font-weight: bold;
+      background: none;
+    }
+  }
+
+  .active > a {
+    background: none;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .prev a, .next a {
+    border-radius:15px;
+    background: #333;
+    padding: 0;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size:0;
+    margin: 0 40px;
+  }
+
+  .disabled a {
+    padding: 0;
+    display: inline-block;
+    background: none;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+
+    &:hover {
+      border-radius:15px;
+      background: #333;  
+    }
+  }
+
+  .prev a {
+    background: image-url("beta2/paging-left-off.png");
+
+    &:hover {
+      background: image-url("beta2/paging-left-on.png");
+    };
+  }
+  .prev.disabled a {
+    background: image-url("beta2/paging-left-off.png");
+  }
+
+  .next a {
+    background: image-url("beta2/paging-right-off.png");
+    &:hover {
+      background: image-url("beta2/paging-right-on.png");
+    };
+  }
+  .next.disabled a {
+    background: image-url("beta2/paging-right-off.png");
+  }
+}

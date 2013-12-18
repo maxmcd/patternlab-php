@@ -1,0 +1,33 @@
+.modal {
+  .modal-header {
+    h4 {
+      margin: 0;
+    }
+  }
+
+  .modal-body {
+    padding:15px 30px;
+  }
+}
+
+#signin-modal {
+  .modal-footer {
+    @include box-shadow(inset 0px 8px 5px -5px rgba(35, 31, 32, 0.4));
+    background: #ececec;
+    padding: 30px;
+    display: none;
+  }
+}
+
+.frame {
+  .modal,
+  .modal.container,
+  .modal.modal-overflow {
+    top: none !important;
+    right: none !important;
+    left: none !important;
+    bottom: auto;
+    margin: 0 auto !important;
+    padding: 0 auto !important;
+  }
+}

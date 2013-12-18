@@ -1,0 +1,309 @@
+$sidebar-width:           200px;
+$sidebar-collapsed-width: 50px;
+$sidebar-mobile-width:    250px;
+$sidebar-scroll-offset:   30px;
+
+html {
+  height:100%;
+}
+
+body {
+  position: relative;
+  height: inherit;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  &.touch-scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    #content-wrapper {
+      overflow: hidden;
+    }
+
+    #main-content {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    #ca-sidebar {
+      display: block !important;
+      overflow: hidden;
+      height: inherit;
+
+      ul {
+        overflow-y: scroll;
+        height: inherit;
+      }
+    }
+  }
+
+  &.sidebar {
+    @media screen and (min-width: $screen-tablet) {
+      .container {
+        max-width: $container-tablet - 40px;
+      }
+    }
+
+    @media screen and (min-width: $screen-desktop) {
+      .container {
+        max-width: $container-desktop - $sidebar-width;
+      }
+    }
+
+    @media screen and (min-width: $screen-large-desktop) {
+      .container {
+        max-width: $container-large-desktop - $sidebar-width;
+      }
+    }
+  }
+}
+
+//default media styles
+#content-wrapper {
+  position: relative;
+  min-height: 100%;
+  width: auto;
+  margin-left: $sidebar-width;
+  @include full-transition((transform 0.2s, margin-left 0.2s));
+}
+
+// #content {
+//   padding-bottom: 60px;
+// }
+
+#main-content {
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  height: auto;
+  top: 65px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#ca-sidebar-tooltip-container {
+  .tooltip {
+    display: none !important;
+  }
+}
+
+#ca-sidebar {
+  width:$sidebar-width;
+  -webkit-overflow-scrolling: touch;
+  position:absolute;
+  top:0;
+  left:0;
+  background:#333;
+  z-index: 1000;
+
+  @include full-transition((transform 0.2s, width 0.2s));
+
+  ul {
+    width: $sidebar-width + $sidebar-scroll-offset; // hide scroll
+    padding: 0px 0px 40px 0px;
+    position: absolute;
+    margin: 0;
+
+    li {
+      display: block;
+      color: #fff;
+      font-weight: 700;
+
+      .switch-block {
+        padding: 0px 0px 10px 15px;
+      }
+
+      a.js-switch-button {
+        display: none;
+      }
+
+      &.dark {
+        background: #222;
+      }
+
+      &.active {
+        background: $body-bg;
+        a {
+          color: #333;
+        }
+
+        .icon-stack-base {
+          color: #009F4A !important;
+        }
+      }
+
+      .two-line-text {
+        position:absolute;
+        line-height:normal;
+        margin-top: 3px;
+      }
+
+      .icon-stack {
+        font-size: 18px;
+        margin: 0px 9px 0px -3px;
+
+        .icon-stack-base {
+          color: #666;
+        }
+
+        .icon-stack-icon {
+          color: #fff;
+          font-size: 110%;
+        }
+      }
+
+      .item-icon {
+        margin-right: 10px;
+        border-radius: 3px;
+
+        &.item-icon-default {
+          width: 32px;
+          height: 32px;
+          display: inline-block;
+          vertical-align: middle;
+          background: #999;
+        }
+      }
+
+      .item-count {
+        float: right;
+        margin-right: $sidebar-scroll-offset;
+        font-weight: 700;
+
+        &.led {
+          margin-top: 15px;
+        }
+      }
+
+      a {
+        font-weight: 500;
+        display: block;
+        color: #fff;
+        line-height: 40px;
+        padding: 2px 10px 2px 10px;
+
+
+        &:hover {
+          text-decoration: none;
+          background: $body-bg;
+          color: #333;
+        }
+      }
+
+      &.separator {
+        border-top: 1px solid #111111;
+        border-bottom: 1px solid #464637;
+        height: 0;
+      }
+
+      &.header {
+        font-size: 12px;
+        line-height: 20px;
+        padding-left: 10px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+//if screen is much than tablet but we need to collapse left menu
+@media screen and (max-width: $screen-tablet + $sidebar-width) {
+  #ca-sidebar-tooltip-container {
+    .tooltip {
+      display: block !important;
+      left: $sidebar-collapsed-width !important;
+    }
+  }
+
+  #content-wrapper {
+    margin-left: $sidebar-collapsed-width;
+  }
+
+  #ca-sidebar {
+    width: $sidebar-collapsed-width;
+  }
+
+  #ca-sidebar ul li {
+    a.js-switch-button {
+      display: block;
+    }
+
+    .switch-block {
+      display: none;
+    }
+
+    &.header {
+      display:none;
+    }
+  }
+}
+
+//if screen is a tablet hide left menu
+@media screen and (max-width: $screen-tablet - 1) {
+  #ca-sidebar-tooltip-container {
+    .tooltip {
+      display: none !important;
+    }
+  }
+
+  #content-wrapper {
+    margin-left: 0;
+  }
+
+  #ca-sidebar {
+    display:none;
+    width: $sidebar-mobile-width;
+    @include translate(-$sidebar-mobile-width, 0);
+
+    ul {
+      width: $sidebar-mobile-width + $sidebar-scroll-offset;
+
+      li {
+        .tooltip {
+          display: none !important;
+        }
+
+        a.js-switch-button {
+          display: none;
+        }
+
+        .switch-block {
+          display: block;
+        }
+      }
+    }
+  }
+
+  #content, .modal-content {
+    // disable this properties because it breaks fixed elements
+    //@include translateZ(0);
+    //@include backface-visibility(hidden);
+  }
+
+  .ca-menu-opened {
+    #content-wrapper{
+      @include translate($sidebar-mobile-width, 0);
+    }
+
+    #main-content {
+      overflow-y: hidden;
+    }
+
+    #ca-sidebar {
+      display: block;
+      @include translate(0, 0);
+    }
+  }
+}
+
+@media screen and (min-width: $screen-tablet) {
+  body.sidebar-hidden-sm {
+    #content-wrapper {
+      margin-left: 0;
+    }
+    #ca-sidebar {
+      display: none !important;
+    }
+  }
+}

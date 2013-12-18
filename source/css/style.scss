@@ -1,120 +1,408 @@
-/*                                                                                                                                         
-                                                ,,            ,,                          ,,                                             
- .M"""bgd mm                                    db          `7MM        mm         mm   `7MM                                    OO OO OO 
-,MI    "Y MM                                                  MM        MM         MM     MM                                    88 88 88 
-`MMb.   mmMMmm ,pW"Wq.`7MMpdMAo.     `7Mb,od8 `7MM  .P"Ybmmm  MMpMMMb.mmMMmm     mmMMmm   MMpMMMb.  .gP"Ya `7Mb,od8 .gP"Ya      || || || 
-  `YMMNq. MM  6W'   `Wb MM   `Wb       MM' "'   MM :MI  I8    MM    MM  MM         MM     MM    MM ,M'   Yb  MM' "',M'   Yb     || || || 
-.     `MM MM  8M     M8 MM    M8       MM       MM  WmmmP"    MM    MM  MM         MM     MM    MM 8M""""""  MM    8M""""""     `' `' `' 
-Mb     dM MM  YA.   ,A9 MM   ,AP       MM       MM 8M         MM    MM  MM         MM     MM    MM YM.    ,  MM    YM.    ,     ,, ,, ,, 
-P"Ybmmd"  `Mbmo`Ybmd9'  MMbmmd'      .JMML.   .JMML.YMMMMMb .JMML  JMML.`Mbmo      `Mbmo.JMML  JMML.`Mbmmd'.JMML.   `Mbmmd'     db db db 
-                        MM                         6'     dP                                                                             
-                      .JMML.                       Ybmmmd'                                                                               
+$brand-primary: #00a14b !default;
 
-Pattern Lab doesn't have any CSS requirements, which means you can write your styles however you want. Hooray!
-You can use Sass, Less, vanilla CSS, or some other crazy thing I haven't heard of yet.
-So please don't use these styles. They're just here to put together the demo, and nothing more.
-They're intentionally gray, boring, and crappy because you're supposed to do this stuff yourself.
+//$font-family-sans-serif: Helvetica, Arial, sans-serif !default;
+//$font-family-serif:    Georgia, "Times New Roman", Times, serif !default;
+$baskervilleFontFamily: "Baskerville", "Times New Roman" !default;
 
-Atomic design is philosophically complimentary with these CSS approaches:
+//$font-size-base:   13px !default;
+//$line-height-base: 20 / 13;
 
-* SMACSS by Jonathan Snook http://smacss.com/
-* OOCSS by Nicole Sullivan http://oocss.org/
-* BEM CSS Methology : http://bem.info/method/
-* CSS Guidelines by Harry Roberts : https://github.com/csswizardry/CSS-Guidelines
+$body-bg: #f7f7f7;
 
-So feel free to use any of these approaches. Or don't. It's totally up to you.
+$navbar-height: 65px;
+$navbar-bg:       #ffffff !default;
 
-*/
+$navbar-link-color:                 #666;
+$navbar-link-hover-color:            #000;
+$navbar-link-active-color:           #000;
 
-/*------------------------------------*\
-    $TABLE OF CONTENTS 
-    based generally on Harry Roberts excellent CSS Guidelines https://github.com/csswizardry/CSS-Guidelines
-\*------------------------------------*/
-/**
- * VARIABLES..............................Declarations of Sass variables 
- * .....Colors
- * .....Typography
- * .....Layout
- * .....Defaults
- * .....Breakpoints
- * MIXINS.................................Sass mixins 
- * RESET..................................Set reset defaults
- * GLOBAL CLASSES.........................Set reset defaults
- * GLOBAL ELEMENTS........................Establish global styles
- * .....Main
- * .....Headings
- * .....Text-related elements (p, blockquote, lists)
- * .....Defaults
- * .....Breakpoints
- * TYPOGRAPHY------------------------------
- * MEDIA------------------------------
- * LAYOUT------------------------------
- * NAVIGATION------------------------------
- * TOC To Be Continued
- */
+$navbar-link-hover-bg:     $body-bg;
+$navbar-link-active-bg:    $body-bg;
 
+$headings-color: #1a1a1a;
+$separator-color: #d9d9d9;
 
+// @import 'twitter/bootstrap';
+ 
+.c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8, .c9, .c10, .c11, .c12,
+.s1, .s2, .s3, .s4, .s5, .s6, .s7, .s8, .s9, .s10, .s11, .s12,
+.l1, .l2, .l3, .l4, .l5, .l6, .l7, .l8, .l9, .l10, .l11, .l12 {
+  position: relative;
+  // Float and set width: 100%; for easy stacking on mobile devices
+  float: left;
+  width: 100%;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // Inner gutter via padding
+  padding-left:  ($grid-gutter-width / 2);
+  padding-right: ($grid-gutter-width / 2);
+}
+ 
+@mixin grid-shortcuts($prefix: 'l', $with-offsets: false) {
+  @for $i from 1 through $grid-columns {
+    .#{$prefix}#{$i}  { width: percentage($i/$grid-columns) }
+  }
+ 
+  @if $with-offsets {
+    @for $i from 0 through $grid-columns - 1 {
+      $size: percentage($i/$grid-columns);
+      .#{$prefix}o#{$i} { margin-left: $size; }
+      .#{$prefix}r#{$i} { left:        $size; }
+      .#{$prefix}l#{$i} { right:       $size; }
+    }
+  }
+}
+ 
+// Generate grid for tiny devises
+@include grid-shortcuts($prefix: 'c');
+ 
+// Small device columns (phones to tablets)
+@media (min-width: $screen-tablet) {
+  @include grid-shortcuts($prefix: 'l', $with-offsets: true);
+  @include grid-shortcuts($prefix: 's', $with-offsets: true);
+}
+ 
+// Medium and large device columns (desktop and up)
+@media (min-width: $screen-desktop) {
+  @include grid-shortcuts($prefix: 'l', $with-offsets: true);
+}
 
-@import "scss/generic/variables";
-@import "scss/generic/mixins";
-@import "scss/generic/reset";
+@mixin full-transition($property) {
+  -webkit-transition: -webkit-#{$property};
+     -moz-transition: -moz-#{$property};
+       -o-transition: -o-#{$property};
+          transition: #{$property};
+}
 
+@mixin translateZ($z) {
+  -webkit-transform: translateZ($z);
+     -moz-transform: translateZ($z);
+      -ms-transform: translateZ($z);
+       -o-transform: translateZ($z);
+          transform: translateZ($z);
+}
 
+@mixin backface-visibility($value) {
+  -webkit-backface-visibility: $value;
+     -moz-backface-visibility: $value;
+      -ms-backface-visibility: $value;
+       -o-backface-visibility: $value;
+          backface-visibility: $value;
+}
 
+@import url(http://fonts.googleapis.com/css?family=Merriweather:700,400);
 
+@import 'scss/bootstrap/glyphicons';
+@import "scss/fonts";
+@import 'scss/select2';
+@import "scss/avatars";
+@import 'scss/jquery.Jcrop.min';
+@import "scss/navbar";
+@import "scss/footer";
+@import "scss/header";
+@import "scss/buttons";
+@import "scss/pagination";
+@import "scss/content";
+@import "scss/modal";
+@import "scss/form";
+@import "scss/landing";
+@import "scss/list";
+@import "scss/cards";
+@import 'scss/avatar_form';
+@import 'scss/profile';
+@import 'scss/jobs';
+//@import "scss/articles";
+@import "scss/markdown";
+@import "scss/fancybox";
+@import 'scss/sidebar';
+@import "scss/dinex";
+@import "scss/career";
 
-/*------------------------------------*\
-    $GLOBAL ELEMENTS
-\*------------------------------------*/
-@import "scss/base/global-classes";
-@import "scss/base/main";
-@import "scss/base/links";
-@import "scss/base/headings";
-@import "scss/base/text";
-@import "scss/base/lists";
-@import "scss/base/media";
-@import "scss/base/forms";
-@import "scss/base/tables";
-@import "scss/base/animation";
+img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
 
+.hs {
+  width: 100%;
+  height: 0;
+  padding-bottom: 5%;
+}
 
+.br2 {
+  line-height: $line-height-base*2;
+}
 
+.br4 {
+  line-height: $line-height-base*4;
+}
 
+.row.row-light-gray {
+  background: $gray-lighter;
+}
 
-/*------------------------------------*\
-    $LAYOUT
-\*------------------------------------*/
-@import "scss/objects/layout";
+a.see-all {
+  font-weight: normal;
+  font-size: 14px;
+  float: right;
+  position: relative !important;
+}
 
+hr {
+  margin: 0px;
+  height: 0px;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid $separator-color;
+}
 
-/*------------------------------------*\
-    $PAGE STRUCTURE
-\*------------------------------------*/
-@import "scss/objects/header";
-@import "scss/objects/nav";
-@import "scss/objects/main";
-@import "scss/objects/footer";
+h4, h5, h6 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
 
+.panel-footer.row-vline > .row {
+  margin: -10px -15px;
 
+  > div {
+    padding: 10px 15px;
+    border-right: 1px solid $separator-color;
 
-/*------------------------------------*\
-    $TEXT Styles
-\*------------------------------------*/
-@import "scss/objects/text";
+    &:last-child {
+      border-right: 0;
+    }
+  }
+}
 
+.no-margin {
+  margin: 0;
+}
 
-/*------------------------------------*\
-    $COMPONENTS
-\*------------------------------------*/
-@import "scss/objects/icons";
-@import "scss/objects/buttons";
-@import "scss/objects/blocks";
-@import "scss/objects/lists";
-@import "scss/objects/tooltip";
-@import "scss/objects/accordion";
-@import "scss/objects/tabs";
-@import "scss/objects/sections";
-@import "scss/objects/article";
-@import "scss/objects/comments";
+.margin-top {
+  margin-top: 10px;
+}
 
+.margin-right {
+  margin-right: 15px;
+}
 
+.margin-left {
+  margin-left: 15px;
+
+  &.x2 {
+    margin-left: 30px;
+  }
+}
+
+p.middle {
+  margin-top: 10px;
+}
+
+.table {
+  td {
+    vertical-align:middle;
+    padding:0;
+  }
+}
+
+.fixed {
+  position: fixed;
+  z-index: 250;
+}
+
+.clickable {
+  position:relative;
+
+  a, button {
+    z-index: 1;
+    position:relative;
+  }
+
+  a.panel-click {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    text-decoration:none;
+    z-index:1;
+    background-color:white; /*workaround to make clickable in IE */ 
+    opacity: 0; /*workaround to make clickable in IE */ 
+    filter: alpha(opacity=1); /*workaround to make clickable in IE */ 
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.text-overflow {
+  position: absolute !important;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 30px;
+}
+
+.badge.badge-primary {
+  background-color: $brand-primary;
+}
+
+.badge {
+  background-color: $gray-light;
+}
+
+.panel-heading-white {
+  background-color: white;
+}
+
+.panel-heading-primary {
+  color: #fff;
+  background-color: $brand-primary;
+}
+
+.panel-footer-green {
+  border-left: 5px solid $brand-primary;
+  border-radius: 0;
+  padding-left: 10px;
+}
+
+.panel-primary {
+  background-color: $brand-primary;
+  color: #fff;
+}
+
+.panel-badge {
+  margin-top: -10px;
+  margin-bottom: 5px;
+  font-size: 85%;
+  background-color: $brand-primary;
+  color: #fff;
+  padding: 1px;
+  width: 100px;
+  border-radius: 0px 0px 2px 2px;
+  text-align: center;
+}
+
+.dark-gray {
+  color: $gray-dark;
+}
+
+.light-gray {
+  color: $gray-light;
+}
+
+.normal-gray {
+  color: #666;
+}
+
+.text-primary {
+  color: $brand-primary;
+}
+
+.label.label-bordered {
+  background-color: white;
+  border: 1px solid $text-color;
+  color: $text-color;
+}
+
+a.expander {
+    background: url("/assets/expand.png") transparent;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 2px 0 2px 15px;
+    white-space: nowrap;
+}
+
+a.expander.collapsed {
+    background: url("/assets/collapse.png") transparent;
+}
+
+input[disabled][type='submit'] {
+  background-color: inherit;
+}
+
+.ultra-light {
+  font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue';
+  font-size: 60px;
+  line-height: 100%
+}
+
+.border-muted {
+  border-color: $gray-light !important;
+}
+
+.border-primary {
+  border-color: $brand-primary !important;
+}
+
+.row-divider {
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0 -30px;
+  padding: 15px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+#js-scroll-pane {
+  border-bottom: 1px solid #dddddd;
+
+  .list-group-item:first-child {
+    border-radius: 0;
+  }
+
+  .list-group-item:last-child {
+    border-radius: 0;
+    border-bottom: 0;
+  }
+}
+
+.led {
+  display: inline-block;
+  background-color: rgb(68,68,68);
+  @include box-shadow(inset 1px 1px 1px rgb(0,0,0));
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  &.led-on {
+    background-color: rgb(122,255,77);
+    @include box-shadow(inset 1px 1px 1px #666);
+    //@include box-shadow(0px 0px 3px 1px rgba(92,255,38,0.2));
+  }
+}
+
+.panel-heading + .panel-footer {
+  border-top: 0px;
+  margin-top: -15px;
+}
+
+.help-control {
+  margin-top: -10px;
+  margin-bottom: 0px;
+}
+
+.btn-group > .dropdown-toggle {
+  border-left: 1px solid #aaa;
+}
+
+#social {
+  ul {
+    list-style: none;
+    margin: 0;
+    width: 100%;
+
+    li {
+      margin-bottom: 5px;
+      float: left;
+      width: 33%;
+
+      .fb-like {
+        margin-right: 30px;
+      }
+    }
+  }
+}
