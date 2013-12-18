@@ -1,0 +1,9 @@
+#patternlab-html, #patternlab-body {
+  margin: 0;
+  padding: 0;
+  background: inherit;
+  -webkit-text-size-adjust: 100%; }
+
+.sg-nav-wrapper {
+  overflow: hidden;
+  background: #dddddd; }
